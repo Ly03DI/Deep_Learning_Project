@@ -1,4 +1,4 @@
-# Projet de Dashboard d'Analyse de Données
+# Projet de Tableau de Bord pour l'Analyse des Données des Victimes d'Accidents Routiers
 
 Ce projet vise à créer un tableau de bord interactif pour l'analyse "Accidentologie : base victimes"
 <p>Données issues de l’application nationale TRAxy (système d’information de l’observatoire national interministériel à la sécurité routière (ONISR))
@@ -36,9 +36,6 @@ Répartition des victimes par type d'accident : la répartition des victimes ent
 Gravité des blessures : Une analyse approfondie pourrait être effectuée pour examiner la gravité des blessures chez les personnes blessées, en distinguant les blessures légères des blessures nécessitant une hospitalisation. Cela permettrait de comprendre la proportion de blessures graves par rapport à l'ensemble des blessures.
 Concentration géographique : Une analyse géographique pourrait mettre en évidence les zones où les accidents corporels sont les plus fréquents, ce qui pourrait contribuer à orienter les efforts de prévention et de sécurité routière.
 
-
-### df_cleaned.head(5)
-![Texte alternatif](./data/tabel.png)
 ## Guide du Développeur
 get_data.py : Ce fichier contient une fonction load_data pour charger les données à partir de la source et une autre fonction clean_data qui sert à nettoyer et transformer les données si nécessaire. Cela permet d'avoir un module dédié à la manipulation des données, ce qui rend le code plus modulaire et facile à gérer.
 dashboard.py : Ce fichier est responsable de la création du tableau de bord interactif à l'aide d'une bibliothèque comme Streamlit. Vous pouvez décrire les différentes parties du tableau de bord, les widgets utilisés pour l'interaction avec les données, et comment les visualisations sont générées à partir des données chargées.
