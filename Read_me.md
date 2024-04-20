@@ -53,14 +53,3 @@ Dépendances requises pour le développement :
 - Matplotlib : Une bibliothèque Python pour la création de graphiques statiques.
 - streamlit_folium : Une extension pour Streamlit permettant d'intégrer des cartes Folium dans les applications Streamlit.
 
-Contribution au projet :
-
-Nous encourageons la contribution à ce projet et apprécions tous les retours, rapports de bogues, suggestions d'amélioration et contributions de code. Voici comment vous pouvez contribuer :
-
-1. Signaler des problèmes : Si vous rencontrez des problèmes lors de l'utilisation de notre application ou si vous avez des idées d'amélioration, veuillez ouvrir un nouveau problème dans la section "Issues" de notre dépôt GitHub. Assurez-vous de fournir autant de détails que possible sur le problème ou la suggestion.
-
-2. Proposer des fonctionnalités : Si vous avez des idées de nouvelles fonctionnalités ou d'améliorations, veuillez ouvrir un nouveau problème dans la section "Issues" de notre dépôt GitHub et étiqueter le problème comme une demande de fonctionnalité. Nous examinerons votre proposition et discuterons de la meilleure façon de l'implémenter.
-
-3. Envoyer des demandes de tirage (pull requests) : Si vous souhaitez contribuer du code au projet, vous pouvez créer une nouvelle branche à partir de la branche principale, implémenter vos modifications, puis soumettre une demande de tirage (pull request) vers la branche principale. Assurez-vous de suivre les bonnes pratiques de développement et de tester vos modifications avant de soumettre la demande de tirage.
-
-Nous vous remercions de votre intérêt pour ce projet et de votre contribution à son amélioration !
