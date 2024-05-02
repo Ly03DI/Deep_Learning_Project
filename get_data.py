@@ -6,47 +6,39 @@ def load_data(nom_fichier):
     return data
 
 def clean_data(data):
-    # Remplacer les valeurs manquantes par 0 dans les colonnes spécifiées
-    # Sélectionner les colonnes de type entier
-    # Remplacer les valeurs non définies par 0 dans tout le DataFrame
-# Remplacer les valeurs non définies par 0 dans tout le DataFrame
-    data = data.fillna(0)
+    # Remplacer les valeurs manquantes dans la colonne "Tranche d'âge" par le mode
+    mode_values = data["Tranche d'age"].mode().iloc[0]
+    data["Tranche d'age"].fillna(mode_values, inplace=True)
 
-    # Convertir les colonnes de type float64 en entiers
-    colonnes_float = data.select_dtypes(include=['float64']).columns
-    data[colonnes_float] = data[colonnes_float].astype(int)
+    # Remplacer les valeurs manquantes dans les colonnes des blessures par 0 et les convertir en entier
+    colonnes_a_convertir = ["Blessés Légers", "Blessés hospitalisés", "Tué"]
+    data[colonnes_a_convertir] = data[colonnes_a_convertir].fillna(0).astype(int)
 
+    # Remplacer les valeurs manquantes dans la colonne "Résumé" par "Données manquantes"
+    data["Résumé"].fillna("Données manquantes", inplace=True)
 
+    # Remplacer les valeurs manquantes dans la colonne "Adresse" par "Adresse inconnue"
+    data["Adresse"].fillna("Adresse inconnue", inplace=True)
 
-    # data["Blessés Légers"]=  data["Blessés Légers"].fillna("0")
-    # data["Blessés hospitalisés"]=  data["Blessés hospitalisés"].fillna("0")
-    # data["Tué"]=  data["Tué"].fillna("0")
-    # Calculer le mode de la colonne "Tranche d'age"
-    mode_tranche_age = data["Tranche d'age"].mode()[0]
-
-    # Remplacer les valeurs nulles dans la colonne "Tranche d'âge" par le mode
-    data["Tranche d'age"] = data["Tranche d'age"].fillna(mode_tranche_age)
-    
-    data["Résumé"] = data["Résumé"].fillna("Données manquantes")
-    data["Adresse"] = data["Adresse"].fillna("Adresse inconnue")
-
-    
     # Supprimer les colonnes "arrondgeo" et "Arrondissement.1"
     data = data.drop(labels=["arrondgeo", "Arrondissement.1"], axis=1)
-    
+
     # Convertir la colonne 'Date' en type datetime
-    # data['Date'] = pd.to_datetime(data['Date'])
+    data['Date'] = pd.to_datetime(data['Date'])
 
-    # Convertir les colonnes 'Age', 'Blessés Légers', 'Blessés hospitalisés' et 'Tué' en type entier
-    colonnes_entier = ['Age', 'Blessés Légers', 'Blessés hospitalisés', 'Tué']
-    data[colonnes_entier] = data[colonnes_entier].astype(int)
-    
-    # Convertir les colonnes 'Mode', 'Catégorie', 'Gravité', 'Genre', 'Milieu', 'Tranche d'âge', 'PIM/BD PERIPHERIQUE', 'Résumé', 'Coordonnées', 'Nom arrondissement' en type str
-    colonnes_categorie = ['Mode', 'Catégorie', 'Gravité', 'Genre', 'Milieu', 'Tranche d\'age', 'PIM/BD PERIPHERIQUE', 'Résumé', 'Coordonnées', 'Nom arrondissement',"Adresse"]
-    data[colonnes_categorie] = data[colonnes_categorie].astype(str)
-    
+    # Ajouter des colonnes pour le jour, le mois et l'année
+    data['Jour'] = data['Date'].dt.day
+    data['Mois'] = data['Date'].dt.month
+    data['Année'] = data['Date'].dt.year
+
+    # Convertir les colonnes sélectionnées en chaînes de caractères
+    colonnes_categorie = ['Mode', 'Catégorie', 'Gravité', 'Genre', 'Milieu', 'PIM/BD PERIPHERIQUE', 'Résumé', 'Coordonnées', 'Nom arrondissement']
+    data[colonnes_categorie] = data[colonnes_categorie].applymap(str)
+
+    # Définir le mapping des valeurs de gravité aux nombres entiers
+    mapping_gravite = {"Blessé léger": 0, "Blessé hospitalisé": 1, "Tué": 2}
+
+    # Remplacer les valeurs de la colonne "Gravité" par les nombres entiers correspondants
+    data['Gravité'] = data['Gravité'].map(mapping_gravite)
+
     return data
-
-# file_name = "accidentologie.csv"
-# data = load_data(file_name)
-# data_cleaned = clean_data(data)
